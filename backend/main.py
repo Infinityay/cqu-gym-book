@@ -102,14 +102,14 @@ def get_area_id(venueId: int = Query(...), itemId: int = Query(...), token: str 
 @app.post("/field_reserve_display_data")
 def field_reserve_display_data(query: FieldReserveQuery):
     try:
-        # 执行数据获取逻辑
+
         data = get_field_reserve_display_data(
             query.venueId, query.areaId, query.queryDate, query.itemId, query.token
         )
         return data
 
     except Exception as e:
-        # 打印异常信息
+
         print(f"Error: {str(e)}")
         raise HTTPException(status_code=400, detail=str(e))
 
@@ -117,7 +117,7 @@ def field_reserve_display_data(query: FieldReserveQuery):
 @app.post("/create_order")
 def create_order(request: CreateOrderRequest):
     try:
-        # 处理订单逻辑
+
         response = create_field_reserve_order(
             venue_id=request.venueId,
             item_id=request.itemId,
@@ -134,8 +134,6 @@ def create_order(request: CreateOrderRequest):
         print(response)
         return response
     except ValidationError as e:
-        # 打印验证错误详细信息
-        print(e.json())
         raise HTTPException(status_code=422, detail=e.errors())
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -151,9 +149,6 @@ class TicketQuery(BaseModel):
 
 @app.post("/query_ticket_types")
 async def query_ticket_types_gym_and_pool(ticket_query: TicketQuery):
-    """
-    查询健身房或者游泳馆票种信息
-    """
     try:
         query_ticket_types_info = query_ticket_types(
             token=ticket_query.token,
@@ -166,12 +161,9 @@ async def query_ticket_types_gym_and_pool(ticket_query: TicketQuery):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
     except ValidationError as e:
-        # 打印验证错误详细信息
         print(e.json())
         raise HTTPException(status_code=422, detail=e.errors())
 
-
-# 定义请求体模�?
 class BookingRequest(BaseModel):
     token: str
     ticket_info: dict
@@ -181,17 +173,17 @@ class BookingRequest(BaseModel):
 @app.post("/book_ticket")
 async def book_ticket_gym_and_pool(booking_request: BookingRequest):
     try:
-        # 调用 create_ticket_order 函数创建订单
+
         response = create_ticket_order(
             token=booking_request.token,
             ticket_info=booking_request.ticket_info,
             use_date=booking_request.use_date
         )
-        # 检查响应结�?
+
         if response.get("success"):
-            return {"message": "预约成功", "data": response}
+            return {"message": "book success", "data": response}
         else:
-            raise HTTPException(status_code=400, detail="预约失败")
+            raise HTTPException(status_code=400, detail="book failed")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

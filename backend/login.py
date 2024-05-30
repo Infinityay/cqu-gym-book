@@ -1,4 +1,4 @@
-from requests import Session
+﻿from requests import Session
 import requests
 from bs4 import BeautifulSoup
 from encrypt import *
@@ -17,8 +17,7 @@ url = "https://sso.cqu.edu.cn/login"
 
 
 def get_formdata(html: str, username: str, password: str) -> Dict:
-    """生成登录表单
-    """
+
     soup = BeautifulSoup(html, 'html.parser')
     croypto = soup.find(id="login-croypto").text
     login_page_flowkey = soup.find(id="login-page-flowkey").text
@@ -29,7 +28,7 @@ def get_formdata(html: str, username: str, password: str) -> Dict:
     passwd_encrypted = str(passwd_encrypted,encoding='utf-8')
 
 
-    # 传入数据进行统一认证登录
+
     return {
         'username': str(username),
         'type': 'UsernamePassword',
@@ -42,8 +41,7 @@ def get_formdata(html: str, username: str, password: str) -> Dict:
 
 
 def login(username: str, password: str) -> Session:
-    """单点登录
-    """
+
     session = requests.session()
 
     login_page = session.get(
@@ -53,10 +51,10 @@ def login(username: str, password: str) -> Session:
         timeout=10
         ) 
 
-    # 构建登录表单，这里不考虑验证码的情况
+    
     formdata = get_formdata(login_page.text, username, password)
 
     login_response = session.post(url=url, data=formdata, headers=headers, allow_redirects=False,timeout=10)
-    # 重定向到目标服务
+
     session.get(url=login_response.headers['Location'], headers=headers, allow_redirects=False,timeout=10)
     return session
