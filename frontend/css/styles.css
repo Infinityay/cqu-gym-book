@@ -1,0 +1,250 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 5px 0;
+}
+
+input {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.container {
+    width: 300px; /* 保持原有宽度 */
+    overflow-x: auto; /* 允许水平滚动 */
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.container {
+    width: 80%; /* 使用更大的百分比宽度 */
+    max-width: 1200px; /* 可以设置一个最大宽度，以避免在大屏幕上过宽 */
+    margin: 10px auto; /* 保持居中 */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+button {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+#message, #userInfo {
+    margin-top: 10px;
+    color: red;
+}
+
+.loading {
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #3498db;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+    margin: 10px auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+
+h1 {
+    text-align: center;
+}
+
+.card {
+    padding: 20px;
+    margin: 10px 0;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card:hover {
+    background-color: #218838;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+}
+
+.pagination {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.pagination button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.pagination button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* 按钮基本样式 */
+#reserveInfo button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-image: linear-gradient(to right, #4caf50, #8bc34a);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* 鼠标悬停时的样式 */
+#reserveInfo button:hover {
+    background-image: linear-gradient(to right, #8bc34a, #4caf50);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* 禁用状态的样式 */
+#reserveInfo button:disabled {
+    background-image: linear-gradient(to right, #ccc, #e0e0e0);
+    color: #666;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+
+/* 控制按钮组的容器 */
+.dateButtonsContainer {
+    position: absolute; /* 绝对定位 */
+    top: 50px; /* 距离顶部10px */
+    right: 20px; /* 距离右边10px */
+}
+
+/* 容器内的按钮样式 */
+#dateButtons button {
+    padding: 8px 16px; /* 增加内边距使按钮更大 */
+    background-color: #4CAF50; /* 绿色背景 */
+    color: white; /* 文字颜色为白色 */
+    border: none; /* 无边框 */
+    border-radius: 5px; /* 圆角边框 */
+    cursor: pointer; /* 鼠标手型 */
+    transition: background-color 0.3s; /* 过渡动画 */
+    margin-left: 5px; /* 左边距 */
+}
+
+/* 鼠标悬停效果 */
+#dateButtons button:hover {
+    background-color: #45a049; /* 悬停时更深的绿色 */
+}
+
+/* 通用的container样式，确保能容纳绝对定位的按钮组 */
+.container {
+    position: relative; /* 相对定位 */
+    min-height: 100vh; /* 最小高度为视口高度，确保容纳所有内容 */
+    width: 80%; /* 容器宽度 */
+    max-width: 1200px; /* 最大宽度 */
+    padding: 20px;
+    margin: 0 auto; /* 水平居中 */
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+

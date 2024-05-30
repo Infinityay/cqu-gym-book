@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="venueTitle">场馆预订信息</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- 引入 SweetAlert2 的 CSS 和 JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+<div class="container">
+    <h1 id="venueHeader">场馆预订信息</h1>
+    <div id="reserveInfo"></div>
+    <div class="tableContainer">
+        <!-- 新增一个容器 dateButtonsContainer -->
+        <div class="dateButtonsContainer">
+            <div id="dateButtons">
+                <button id="todayButton">今天</button>
+                <button id="tomorrowButton">明天</button>
+                <button id="dayAfterTomorrowButton">后天</button>
+            </div>
+        </div>
+        <div id="tableContent"></div>
+    </div>
+</div>
+
+
+<div id="overlay" class="overlay" style="display:none;"></div>
+<div id="loading" class="loading" style="display:none;"></div>
+
+<script src="../js/utils.js" type="module"></script>
+<script src="../js/reserve.js" type="module"></script>
+<script>// 获取今天、明天和后天的日期
+const today = new Date();
+const tomorrow = new Date(today);
+tomorrow.setDate(tomorrow.getDate() + 1);
+const dayAfterTomorrow = new Date(today);
+dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 2);
+
+// 设置按钮文本为动态日期
+document.getElementById('todayButton').innerText = formatDate(today);
+document.getElementById('tomorrowButton').innerText = formatDate(tomorrow);
+document.getElementById('dayAfterTomorrowButton').innerText = formatDate(dayAfterTomorrow);
+
+// 格式化日期函数
+function formatDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+</script>
+</body>
+</html>
