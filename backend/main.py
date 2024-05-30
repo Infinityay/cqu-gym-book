@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from starlette.middleware.cors import CORSMiddleware
 from typing import List, Optional
 
-from utils import *
+from .utils import *
 
 
 class LoginRequest(BaseModel):
@@ -171,7 +171,7 @@ async def query_ticket_types_gym_and_pool(ticket_query: TicketQuery):
         raise HTTPException(status_code=422, detail=e.errors())
 
 
-# 定义请求体模型
+# 定义请求体模�?
 class BookingRequest(BaseModel):
     token: str
     ticket_info: dict
@@ -187,7 +187,7 @@ async def book_ticket_gym_and_pool(booking_request: BookingRequest):
             ticket_info=booking_request.ticket_info,
             use_date=booking_request.use_date
         )
-        # 检查响应结果
+        # 检查响应结�?
         if response.get("success"):
             return {"message": "预约成功", "data": response}
         else:
