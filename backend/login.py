@@ -1,7 +1,7 @@
 ﻿from requests import Session
 import requests
 from bs4 import BeautifulSoup
-from encrypt import *
+from .encrypt import *
 from typing import Dict
 from base64 import b64encode,b64decode
 from Crypto.Cipher import AES,DES
