@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, APIRouter
 from pydantic import BaseModel
 from starlette.middleware.cors import CORSMiddleware
 from typing import List, Optional
