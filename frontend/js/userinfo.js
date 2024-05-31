@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     setLoading(true);
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/user_info?token=${token}`);
+        const response = await fetch(`http://127.0.0.1:8000/api/user_info?token=${token}`);
         const data = await response.json();
 
         setLoading(false);
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             throw new Error(data.detail);
         }
 
-        const {username, member: {memberTypeName, idNo, phone, openid, sex}} = data.data;
+        const { username, member: { memberTypeName, idNo, phone, openid, sex } } = data.data;
 
         userInfoDiv.innerHTML = `
             <p><strong>用户名：</strong> ${username}</p>

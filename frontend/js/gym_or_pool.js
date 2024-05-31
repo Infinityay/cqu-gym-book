@@ -1,4 +1,4 @@
-import {fetchTicketTypesGymAndPool, bookTicket} from './utils.js';
+import { fetchTicketTypesGymAndPool, bookTicket } from './utils.js';
 
 document.addEventListener("DOMContentLoaded", async () => {
     const venueInfo = JSON.parse(localStorage.getItem("currentVenue"));

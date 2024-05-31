@@ -29,12 +29,12 @@ document.addEventListener("DOMContentLoaded", () => {
         setLoading(true);
 
         try {
-            const response = await fetch("http://127.0.0.1:8000/login", {
+            const response = await fetch("http://127.0.0.1:8000/api/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({username, password}),
+                body: JSON.stringify({ username, password }),
             });
 
             const data = await response.json();
@@ -48,9 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("token", data.token);
 
             // 获取场馆数据并保存
-            const venuesResponse = await fetch("http://127.0.0.1:8000/venues", {
+            const venuesResponse = await fetch("http://127.0.0.1:8000/api/venues", {
                 method: "GET",
-                
+
             });
 
             const venuesData = await venuesResponse.json();

@@ -48,6 +48,7 @@ class FieldReserveQuery(BaseModel):
 
 
 app = FastAPI()
+api_router = APIRouter(prefix="/api")  
 
 app.add_middleware(
     CORSMiddleware,
@@ -58,7 +59,7 @@ app.add_middleware(
 )
 
 
-@app.post("/login")
+@api_router.post("/login")
 def login(login_request: LoginRequest):
     code = login_and_get_authorization_code(login_request.username, login_request.password)
     if not code:
@@ -69,7 +70,7 @@ def login(login_request: LoginRequest):
     return {"token": token}
 
 
-@app.get("/user_info")
+@api_router.get("/user_info")
 def user_info(token: str):
     user_info = get_login_user_info(token)
     if 'error' in user_info:
@@ -77,7 +78,7 @@ def user_info(token: str):
     return user_info
 
 
-@app.get("/venues")
+@api_router.get("/venues")
 def get_venues():
     try:
         venue_data = fetch_venue_data()
@@ -88,7 +89,7 @@ def get_venues():
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.get("/area_ids")
+@api_router.get("/area_ids")
 def get_area_id(venueId: int = Query(...), itemId: int = Query(...), token: str = Query(...)):
     try:
         area_ids = get_area_id_by_venue_id_and_item_id(venueId, itemId, token)
@@ -99,7 +100,7 @@ def get_area_id(venueId: int = Query(...), itemId: int = Query(...), token: str 
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.post("/field_reserve_display_data")
+@api_router.post("/field_reserve_display_data")
 def field_reserve_display_data(query: FieldReserveQuery):
     try:
 
@@ -114,7 +115,7 @@ def field_reserve_display_data(query: FieldReserveQuery):
         raise HTTPException(status_code=400, detail=str(e))
 
 
-@app.post("/create_order")
+@api_router.post("/create_order")
 def create_order(request: CreateOrderRequest):
     try:
 
@@ -147,7 +148,7 @@ class TicketQuery(BaseModel):
     limit_range: str = '-86400'
 
 
-@app.post("/query_ticket_types")
+@api_router.post("/query_ticket_types")
 async def query_ticket_types_gym_and_pool(ticket_query: TicketQuery):
     try:
         query_ticket_types_info = query_ticket_types(
@@ -170,7 +171,7 @@ class BookingRequest(BaseModel):
     use_date: str
 
 
-@app.post("/book_ticket")
+@api_router.post("/book_ticket")
 async def book_ticket_gym_and_pool(booking_request: BookingRequest):
     try:
 
@@ -187,8 +188,5 @@ async def book_ticket_gym_and_pool(booking_request: BookingRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+app.include_router(api_router)  # 将路由器添加到应用程序
 
-if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run(app, host="127.0.0.1", port=8000)
