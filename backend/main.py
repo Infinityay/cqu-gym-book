@@ -30,7 +30,7 @@ class CreateOrderRequest(BaseModel):
     itemId: int
     fieldAreaId: int
     orderDate: str
-    orderDetailList: list[OrderDetail]
+    orderDetailList: List[OrderDetail]
     saleMode: str
     cardId: str | None
     priceOrig: Optional[float] = None
