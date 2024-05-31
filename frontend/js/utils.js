@@ -2,7 +2,7 @@
 
 async function fetchTicketTypesGymAndPool(ticketQuery) {
     try {
-        const response = await fetch("http://127.0.0.1:8000/api/query_ticket_types", {
+        const response = await fetch("http://47.236.246.169:8000/api/query_ticket_types", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -17,7 +17,7 @@ async function fetchTicketTypesGymAndPool(ticketQuery) {
         }
         return data;
     } catch (error) {
-        console.error(`错误：${error.message}`);
+        console.error(`error: ${error.message}`);
         throw error;
     }
 }
@@ -62,7 +62,7 @@ async function bookTicket(token, ticketInfo, timeOfDay, useDate) {
             use_date: useDate
         };
         console.log('postdata' + JSON.stringify(postData))
-        const response = await fetch("http://127.0.0.1:8000/api/book_ticket", {
+        const response = await fetch("http://47.236.246.169:8000/api/book_ticket", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -79,14 +79,14 @@ async function bookTicket(token, ticketInfo, timeOfDay, useDate) {
 
         return responseData;
     } catch (error) {
-        console.error(`错误：${error.message}`);
+        console.error(`error: ${error.message}`);
         throw error;
     }
 }
 
 async function fetchAreaIds(venueId, itemId, token) {
     try {
-        const areaIdResponse = await fetch(`http://127.0.0.1:8000/api/area_ids?venueId=${venueId}&itemId=${itemId}&token=${token}`);
+        const areaIdResponse = await fetch(`http://47.236.246.169:8000/api/area_ids?venueId=${venueId}&itemId=${itemId}&token=${token}`);
         const areaIdData = await areaIdResponse.json();
 
         if (!areaIdResponse.ok) {
@@ -95,7 +95,7 @@ async function fetchAreaIds(venueId, itemId, token) {
 
         return areaIdData.areaIds;
     } catch (error) {
-        console.error(`错误：${error.message}`);
+        console.error(`error: ${error.message}`);
         throw error;
     }
 }
@@ -110,7 +110,7 @@ async function fetchReserveDataByAreaId(venueId, areaId, queryDate, itemId, toke
             token: token
         };
 
-        const reserveResponse = await fetch("http://127.0.0.1:8000/api/field_reserve_display_data", {
+        const reserveResponse = await fetch("http://47.236.246.169:8000/api/field_reserve_display_data", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -126,14 +126,14 @@ async function fetchReserveDataByAreaId(venueId, areaId, queryDate, itemId, toke
 
         return reserveData;
     } catch (error) {
-        console.error(`错误：${error.message}`);
+        console.error(`error: ${error.message}`);
         throw error;
     }
 }
 
 async function createOrder(orderDetails) {
     try {
-        const response = await fetch("http://127.0.0.1:8000/api/create_order", {
+        const response = await fetch("http://47.236.246.169:8000/api/create_order", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -149,7 +149,7 @@ async function createOrder(orderDetails) {
 
         return responseData;
     } catch (error) {
-        console.error(`错误：${error.message}`);
+        console.error(`error: ${error.message}`);
         throw error;
     }
 }

@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     setLoading(true);
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/api/user_info?token=${token}`);
+        const response = await fetch(`http://47.236.246.169:8000/api/user_info?token=${token}`);
         const data = await response.json();
 
         setLoading(false);
